@@ -25,6 +25,25 @@ mongoose.connect(process.env.MONGODB_URI)
 .catch((err)=>console.log('There was problem while connecting to mongo',err));
 
 //Basic Routes
+app.get('/', (req, res) => {
+  res.json({ 
+    message: 'Backend API is running!',
+    status: 'OK',
+    endpoints: {
+      health: '/health',
+      addNew: '/add-new',
+      test: '/test',
+      results: '/results',
+      learn: '/learn'
+    }
+  });
+});
+
+// Health check route
+app.get('/health', (req, res) => {
+  res.json({ status: 'healthy', uptime: process.uptime() });
+});
+
 app.post('/add-new',async (req,res) => {
    try
    {
@@ -96,6 +115,10 @@ app.get('/test',auth, async(req,res) =>{
             error: error.message
         });
     }
+});
+
+app.use('*', (req, res) => {
+  res.status(404).json({ message: 'Route not found' });
 });
 
 app.listen(port,'0.0.0.0',
