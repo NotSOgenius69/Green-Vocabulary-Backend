@@ -117,9 +117,7 @@ app.get('/test',auth, async(req,res) =>{
     }
 });
 
-app.all('*', (req, res) => {
-  res.status(404).json({ message: 'Route not found' });
-});
+
 
 app.listen(port,'0.0.0.0',
     () => console.log(`Server listening on port ${port}`)
