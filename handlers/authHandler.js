@@ -19,6 +19,9 @@ const signup = async(req,res) => {
         res.status(200).json({
             success:true,
             message:'SignUp successful',
+            user:{
+                isAdmin:user.isAdmin
+            },
             token
         });
     }catch(error){
@@ -61,6 +64,9 @@ const login = async(req,res) => {
         res.status(200).json({
             success:true,
             message:'Login Successful',
+            user:{
+                isAdmin:user.isAdmin
+            },
             token
         })
     }catch(error){

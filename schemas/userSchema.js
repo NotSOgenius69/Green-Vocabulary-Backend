@@ -17,6 +17,10 @@ const userSchema = mongoose.Schema({
     },
     tested:{
         type: Number
+    },
+    isAdmin:{
+        type:Boolean,
+        default:false
     }
 });
 
